@@ -1,2 +1,2 @@
 # Summer-internship
-University of Gävle
+University of Gävle - MACHINE LEARING - DATA SCIENCE
