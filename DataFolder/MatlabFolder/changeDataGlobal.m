@@ -1,4 +1,4 @@
-function [T_output_V27,T_output_V32,T_output_V6] = changeData(T_44, data)
+function [T_output_V27,T_output_V32,T_output_V6] = changeDataGlobal(T_44, data)
 %changeData tranforms data to get only what we need
 
 T_output_V27 = T_44.*data.data(:,2);

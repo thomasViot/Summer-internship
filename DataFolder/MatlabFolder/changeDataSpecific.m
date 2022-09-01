@@ -1,4 +1,4 @@
-function [T_reference,T_output,T_control1,T_control2] = changeData2(T_44, data)
+function [T_reference,T_output,T_control1,T_control2] = changeDataSpecific(T_44, data)
 %changeData tranforms data to get only what we need
 
 T_reference = T_44.*data.data(:,1);
