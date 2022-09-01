@@ -2,7 +2,8 @@
 import shutil
 import sys
 from unittest import suite
-from link import removeFiles
+sys.path.append('../PythonFolder')
+from linkMATLAB import removeFiles
 import os
 
 # -------- global parameters ------ #
@@ -13,26 +14,15 @@ filedate.close()
 
 # --------------------------------- #
 
-def numberOfFiles():
-    list = os.listdir("../TextFolder/specificData")
-    numb = len(list)
-    print("Number of Files : {}".format(numb))
-
-
-def findDate(index):
-    list = os.listdir("../TextFolder/specificData")
-    date = list[index-1]
-    print("data of file number {} is {}".format(index, date))
-
 def main():
     if len(sys.argv) == 1:
         print("please, choose type of data, use 1 for global or 2 for specific.")
     elif sys.argv[1] == "1":
-        file = open("../TextFolder/bigFiles/globalFilesuite.txt", "r", encoding="UTF-8")
-        folder_destination = "../TextFolder/globalData"
+        file = open("../TextFolder/bigFiles/globalFile.txt", "r", encoding="UTF-8")
+        folder_destination = "./globalData"
     else:
-        file = open("../TextFolder/bigFiles/specificFilesuite.txt", "r", encoding="UTF-8")
-        folder_destination = "../TextFolder/specificData"
+        file = open("../TextFolder/bigFiles/specificFile.txt", "r", encoding="UTF-8")
+        folder_destination = "./specificData"
 
     lines = file.readlines()
     file.close()
@@ -46,19 +36,20 @@ def main():
     test2 = 0 # close or not
     test3 = 0 # writing beginning or not
 
-    print("Number of lines {}".format(len(lines)) )
+    print(len(lines))
 
     for line in lines:
         j = j+1
         if j == len(lines):
+            print("ok")
             fichier.close()
-            shutil.move("data" + DayMonthYear[startingDate][0:19]  + ".txt", folder_destination) 
+            shutil.move("data" + str(i) + ".txt", folder_destination) 
             test2 = 1
             test = 0
         if "nan" in line:
             if test2 == 0:
                 fichier.close()
-                shutil.move("data" + DayMonthYear[startingDate][0:19] + ".txt", folder_destination)
+                shutil.move("data" + str(i) + ".txt", folder_destination)
                 test2 = 1
                 test = 0
                 i = i + 1 
@@ -67,7 +58,7 @@ def main():
                 pass 
         else:
             if test == 0:
-                fichier = open("data" + DayMonthYear[startingDate][0:19] + ".txt", "a", encoding="UTF-8")
+                fichier = open("data" + str(i) + ".txt", "a", encoding="UTF-8")
                 test = 1
                 test2 = 0
                 
@@ -89,11 +80,6 @@ def main():
             else :
                 fichier.write(line)
                 fichier.write('\n')
-
-
-    print("Ending of files creation")
-    numberOfFiles()
-    findDate(35)
         
 
 
